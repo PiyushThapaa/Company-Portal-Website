@@ -14,12 +14,12 @@ function Login() {
         <main className='flex justify-center'>
           <form action="" className='border-[1px] border-black rounded-lg p-5 w-96 max-w-full m-5 mt-10'>
             <h1 className='text-center text-[30px] font-bold'>Login</h1>
-            <p className='text-sm mt-5 font-[600]'>ID Number</p>
-            <input type="text" name="" id="" className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm' />
-            <p className='text-sm mt-5 font-[600]'>Password</p>
-            <input type="text" name="" id="" className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm'/>
+            <label htmlFor="id" className='text-sm block mt-5 font-[600]'>ID Number</label>
+            <input type="text" name="id" id="id" className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm' />
+            <label htmlFor="password" className='text-sm block mt-5 font-[600]'>Password</label>
+            <input type="password" name="password" id="password" className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm'/>
             <div className='text-center mt-5'>
-              <input type="submit" value="Login" className='bg-black text-white px-5 py-2 rounded-lg'/>
+              <input type="submit" value="Login" className='bg-black text-white px-5 py-2 rounded-lg cursor-pointer'/>
             </div>
           </form>
         </main>
