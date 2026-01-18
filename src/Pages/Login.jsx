@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from "../assets/project-logo.png"
+import CTAButton from '../components/CTAButton'
 
 function Login() {
   return (
@@ -19,7 +20,7 @@ function Login() {
             <label htmlFor="password" className='text-sm block mt-5 font-[600]'>Password</label>
             <input type="password" name="password" id="password" className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm'/>
             <div className='text-center mt-5'>
-              <input type="submit" value="Login" className='bg-black text-white px-5 py-2 rounded-lg cursor-pointer'/>
+              <CTAButton text={"Login"} />
             </div>
           </form>
         </main>
