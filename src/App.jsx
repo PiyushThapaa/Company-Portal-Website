@@ -12,10 +12,10 @@ function App() {
     <>
     {/* <Login /> */}
     {/* <LeaveApplyForm /> */}
-    {/* <ManagerDashboard /> */}
+    <ManagerDashboard />
     {/* <LeavesOverview /> */}
     {/* <AddAnEmployeeForm /> */}
-    <LeaveRequestDetails />
+    {/* <LeaveRequestDetails /> */}
     </>
   )
 }

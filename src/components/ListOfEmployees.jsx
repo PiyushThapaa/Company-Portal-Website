@@ -5,7 +5,7 @@ import DeleteIcon from "../assets/DeleteIcon.svg"
 
 function ListOfEmployees() {
     return (
-        <div className='m-auto w-[90%]'>
+        <div className='m-auto w-full'>
             <div className='flex'>
                 <div className='relative w-full'>
                     <input type="text" name="" id="" placeholder='Name...' className='w-full h-full border-2 border-black rounded-[10px] p-2' />
