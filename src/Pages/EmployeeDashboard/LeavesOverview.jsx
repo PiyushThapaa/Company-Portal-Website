@@ -6,7 +6,7 @@ import LeaveModal from '../../components/LeaveModal';
 function LeavesOverview() {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className='mx-auto text-[14px]'>
+        <div className='mx-auto'>
             <Header role={"Employee ID"} id={11223} />
             <main className='mx-[30px]'>
                 <h1 className='text-[40px] font-bold text-center'>Leaves Overview</h1>
