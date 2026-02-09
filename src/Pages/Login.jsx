@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Logo from "../assets/project-logo.png"
 import CTAButton from '../components/CTAButton'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../utils/firebase'
+import { AuthContext } from '../utils/AuthContext'
 
 function Login() {
+
+  const { setAuthChanged } = useContext(AuthContext)
 
   const [cred, setCred] = useState({email:"", password:""})
 
@@ -17,6 +20,7 @@ function Login() {
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, `${cred.email}@app.com`, cred.password) 
       console.log("User logged in as ", userCredentials.user)
+      setAuthChanged(prev=>!prev)
     } catch (error) {
       console.error("Error Ocurred, ", error.message)
     }
