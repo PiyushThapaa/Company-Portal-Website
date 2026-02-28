@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function LeaveRequestList() {
     return (
@@ -16,7 +17,7 @@ function LeaveRequestList() {
                     <td className="px-4 py-2 border-b">Keven</td>
                     <td className="px-4 py-2 border-b">15-01-2025 <b>to</b> 17-01-2025</td>
                     <td className="px-4 py-2 border-b bg-yellow-400">Pending</td>
-                    <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer">View</td>
+                    <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer"><Link to="/leave-request-details">View</Link></td>
                 </tr>
             </tbody>
             <tbody>
@@ -24,7 +25,7 @@ function LeaveRequestList() {
                     <td className="px-4 py-2 border-b">Eleven</td>
                     <td className="px-4 py-2 border-b">04-12-2025 (First Half)</td>
                     <td className="px-4 py-2 border-b bg-green-400">Approved</td>
-                    <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer">View</td>
+                    <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer"><Link to="/leave-request-details">View</Link></td>
                 </tr>
             </tbody>
         </table>

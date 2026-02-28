@@ -19,7 +19,6 @@ function Login() {
     }
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, `${cred.email}@app.com`, cred.password) 
-      console.log("User logged in as ", userCredentials.user)
       setAuthChanged(prev=>!prev)
     } catch (error) {
       console.error("Error Ocurred, ", error.message)

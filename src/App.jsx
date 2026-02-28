@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom"
 import Login from './Pages/Login'
 import LeaveApplyForm from './Pages/EmployeeDashboard/LeaveApplyForm'
 import ManagerDashboard from './Pages/ManagerDashboard/ManagerDashboard'
@@ -14,7 +14,9 @@ import { AuthContext } from './utils/AuthContext'
 
 function App() {
 
-  const { user } = useContext(AuthContext)
+  const rerenderNavigate = useNavigate()
+
+  const { user, loading, setLoading } = useContext(AuthContext)
   const [role,setRole] = useState(null)
 
   const fetchUserData = async () => {
@@ -22,45 +24,52 @@ function App() {
     try {
       const querySnapShot = await getDoc(userRef);
       setRole(querySnapShot.data().role)
+
+      //To Navigate the page to / after the role is updated after login 
+      rerenderNavigate("/")
     } catch (error) {
       console.log("Something went Wrong: ", error.message)
+    } finally{
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    if (user) {
-      fetchUserData()
-    }
+      if (user) {
+        fetchUserData()
+      } else {
+        setRole(null)
+        // To navigate to / in case the user is null
+        rerenderNavigate("/")
+      }
   }, [user])
 
   return (
+    loading ? <div>Loading...</div> :
     role ?
     role=="manager" ?
     <div className='text-[14px]'>
-      <Router>
         <Routes>
-          <Route path='/' element={<ManagerDashboard />} />
+          <Route path='/' element={<Navigate to="/manager-dashboard" replace />} />
           <Route path='/manager-dashboard' element={<ManagerDashboard />} />
-          <Route path='/leaves-overview' element={<LeavesOverview />} />
+          <Route path='/add-an-employee' element={<AddAnEmployeeForm />} />
+          <Route path='/leave-request-details' element={<LeaveRequestDetails />} />
         </Routes>
-      </Router>
     </div>
     :
     <div className='text-[14px]'>
-      <Router>
         <Routes>
-          <Route path='/manager-dashboard' element={<LeaveApplyForm />} />
+          <Route path='/' element={<Navigate to="/leaves-overview" replace />} />
+          <Route path='/leave-apply-form' element={<LeaveApplyForm />} />
           <Route path='/leaves-overview' element={<LeavesOverview />} />
         </Routes>
-      </Router>
     </div>
     :
     <div className='text-[14px]'>
-      <Router>
         <Routes>
-          <Route path='/' element={<Login />} />
+        <Route path='/' element={<Navigate to="/login" replace />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
-      </Router>
     </div>
   )
 }

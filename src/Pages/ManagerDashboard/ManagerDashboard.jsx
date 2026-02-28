@@ -4,7 +4,7 @@ import ListOfEmployees from '../../components/ListOfEmployees'
 import LeaveRequestList from '../../components/LeaveRequestList'
 
 function ManagerDashboard() {
-  const [mainComponent, setMainComponent] = useState(false)
+  const [mainComponent, setMainComponent] = useState(true)
   return (
     <div className='mx-auto'>
         <Header role={"Manager ID"} id={112233} />
