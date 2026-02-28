@@ -7,7 +7,7 @@ function ManagerDashboard() {
   const [mainComponent, setMainComponent] = useState(true)
   return (
     <div className='mx-auto'>
-        <Header role={"Manager ID"} id={112233} />
+        <Header />
         <main className='mx-[30px]'>
             <h1 className='text-3xl md:text-[40px] font-bold text-center'>Manager Dashboard</h1>
             <div className='text-center my-[30px]'>

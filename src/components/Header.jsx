@@ -1,11 +1,33 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Logo from "../assets/project-logo.png"
 import ProfileIcon from "../assets/ProfileIcon.svg"
 import { signOut } from 'firebase/auth'
-import { auth } from '../utils/firebase'
+import { auth, db } from '../utils/firebase'
 import { AuthContext } from '../utils/AuthContext'
+import { doc, getDoc } from 'firebase/firestore'
 
-function Header({ role, id }) {
+function Header () {
+
+    const { user } = useContext(AuthContext);
+
+    const [id, setId] = useState()
+    const [role, setRole] = useState("")
+
+    const getUserDetails = async () => {
+        const userRef = doc(db, "Users",user.uid);
+        const querySnapShot = await getDoc(userRef);
+        setId(querySnapShot.data().email.split('@')[0])
+        if (querySnapShot.data().role == "employee") {
+            setRole("Employee ID")
+        } else{
+            setRole("Manager ID")
+        }
+    }
+
+    useEffect(()=>{
+        getUserDetails()
+    },[user])
+
 
     const [logoutbtn, setLogoutbtn] = useState(false)
     const { setAuthChanged } = useContext(AuthContext)

@@ -1,6 +1,7 @@
 import React from 'react'
 
-function LeaveModal({onClose}) {
+function LeaveModal({onClose, data}) {
+
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
 
@@ -16,27 +17,30 @@ function LeaveModal({onClose}) {
                 <hr className='mb-4'/>
                 <div className='flex justify-between mb-4'>
                     <b>Date of Submission</b>
-                    <p>29-06-2025</p>
+                    <p>{data.createdAt.toDate().toLocaleDateString("en-GB").split("/").join("-")}</p>
                 </div>
                 <div className='flex justify-between mb-4'>
                     <b>Type of Leave</b>
-                    <p>Full Day</p>
+                    <p>{data.type_of_leave}</p>
                 </div>
                 <div className='flex justify-between mb-4'>
                     <b>Duration</b>
-                    <p>29-06-2025 <b>to</b> 30-06-2025</p>
+                    {data.type_of_leave == "Full Day" ?
+                    <p>{data.from.split('-').reverse().join('-')} <b>to</b> {data.to.split('-').reverse().join('-')}</p> :
+                    <p>{data.date.split('-').reverse().join('-')} ({data.session})</p>
+                    }
                 </div>
                 <div className='flex justify-between mb-4'>
                     <b>Reason</b>
-                    <p>Going Home</p>
+                    <p>{data.reason}</p>
                 </div>
                 <div className='flex justify-between mb-4 items-center'>
                     <b>Status</b>
-                    <p className='bg-yellow-400 p-2 rounded-[10px]'>Pending</p>
+                    <p className='bg-yellow-400 p-2 rounded-[10px]'>{data.status}</p>
                 </div>
                 <div className='flex justify-between mb-4'>
                     <b>Manager's Comment</b>
-                    <p>No comment yet</p>
+                    <p>{data.manager_cmt}</p>
                 </div>
             </div>
         </div>

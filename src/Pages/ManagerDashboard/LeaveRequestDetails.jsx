@@ -17,7 +17,7 @@ function LeaveRequestDetails() {
     }
   return (
     <div className='mx-auto'>
-        <Header role={"Manager"} id={112233} />
+        <Header />
         <main>
             <h1 className='text-[40px] font-bold text-center mb-[30px]'>Leave Request Details</h1>
             <div className="relative bg-white rounded-xl w-[90%] max-w-[600px] p-6 z-10 mx-auto border border-black">

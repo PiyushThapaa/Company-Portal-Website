@@ -5,10 +5,12 @@ import CTAButton from '../../components/CTAButton'
 import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../../utils/firebase'
 import { AuthContext } from '../../utils/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 function LeaveApplyForm() {
 
     const { user } = useContext(AuthContext)
+    const Navigate = useNavigate()
 
     const [typeState, setTypeState] = useState(true)
     const [fullDayData, setFullDayData] = useState({from:"", to:""})
@@ -37,12 +39,12 @@ function LeaveApplyForm() {
                     createdAt: serverTimestamp()
                 })
                 console.log("Leave request sent to manager for approval")
+                Navigate("/leaves-overview")
             } catch (error) {
                 console.error("Error Ocurred : ",error.message)
             }
         } else {
             if (halfDayData.date == "" || halfDayData.session == "" || reason == "") {
-                console.log(halfDayData.date, halfDayData.session, reason)
                 alert("Please fill All the fields...")
                 return;
             }
@@ -61,6 +63,7 @@ function LeaveApplyForm() {
                     createdAt: serverTimestamp()
                 })
                 console.log("Leave request sent to manager for approval")
+                Navigate("/leaves-overview")
             } catch (error) {
                 console.error("Error Ocurred : ",error.message)
             }   
@@ -69,7 +72,7 @@ function LeaveApplyForm() {
 
     return (
         <div className='container mx-auto'>
-            <Header role={"Employee ID"} id={11223} />
+            <Header />
             <main>
                 <h1 className='text-[40px] font-bold text-center'>Apply for Leaves</h1>
                 <div className='flex justify-center'>

@@ -6,7 +6,7 @@ import CancelButton from '../../components/CancelButton'
 function AddAnEmployeeForm() {
     return (
         <div className='mx-auto'>
-            <Header role={"Manager"} id={112233} />
+            <Header />
             <main>
                 <h1 className='text-[40px] text-center font-bold'>Add an Employee</h1>
                 <div className='flex justify-center'>

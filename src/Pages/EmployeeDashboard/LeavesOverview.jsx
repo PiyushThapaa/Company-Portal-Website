@@ -8,9 +8,16 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 
 function LeavesOverview() {
+    const { user } = useContext(AuthContext);
+
     const [isOpen, setIsOpen] = useState(false);
     const [leaves, setLeaves] = useState([])
-    const { user } = useContext(AuthContext);
+    const [viewLeaveData, setViewLeaveData] = useState({})
+
+    const viewHandler = (id) => {
+       const viewLeave =  leaves.find(u => u.id == id);
+       setViewLeaveData(viewLeave)
+    }
 
     const getMyLeaves = async (uid) => {
         const q = query(
@@ -42,7 +49,7 @@ function LeavesOverview() {
 
     return (
         <div className='mx-auto'>
-            <Header role={"Employee ID"} id={11223} />
+            <Header />
             <main className='mx-[30px]'>
                 <h1 className='text-[40px] font-bold text-center'>Leaves Overview</h1>
                 <div className='text-right my-[30px]'>
@@ -65,12 +72,15 @@ function LeavesOverview() {
                                         <td className="px-4 py-2 border-b">{item.type_of_leave}</td>
                                         {
                                             item.type_of_leave == "Full Day" ?
-                                                <td className="px-4 py-2 border-b">{item.from} <b>to</b> {item.to}</td>
+                                                <td className="px-4 py-2 border-b">{item.from.split('-').reverse().join('-')} <b>to</b> {item.to.split('-').reverse().join('-')}</td>
                                                 :
-                                                <td className="px-4 py-2 border-b">{item.date} ({item.session})</td>
+                                                <td className="px-4 py-2 border-b">{item.date.split('-').reverse().join('-')} ({item.session})</td>
                                         }
                                         <td className="px-4 py-2 border-b bg-yellow-400">{item.status}</td>
-                                        <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer" onClick={() => setIsOpen(true)}>View</td>
+                                        <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer" onClick={() => {
+                                            setIsOpen(true)
+                                            viewHandler(item.id)
+                                        }}>View</td>
                                     </tr>
                                 </tbody>
                             )
@@ -79,7 +89,7 @@ function LeavesOverview() {
                 </table>
             </main>
             <div className={`flex items-center justify-center`}>
-                {isOpen && <LeaveModal onClose={() => setIsOpen(false)} />}
+                {isOpen && <LeaveModal data={viewLeaveData} onClose={() => setIsOpen(false)} />}
             </div>
         </div>
     )
