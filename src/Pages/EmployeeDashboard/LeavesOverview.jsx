@@ -87,6 +87,7 @@ function LeavesOverview() {
                         })
                     }
                 </table>
+                {leaves.length == 0 ? <p className=' text-2xl text-red-600 text-center mt-5 font-semibold '>No Leave Applied Yet</p> : null}
             </main>
             <div className={`flex items-center justify-center`}>
                 {isOpen && <LeaveModal data={viewLeaveData} onClose={() => setIsOpen(false)} />}
