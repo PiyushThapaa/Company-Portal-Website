@@ -32,6 +32,7 @@ function LeaveApplyForm() {
                     type_of_leave:"Full Day",
                     ...fullDayData,
                     employee_id:user.uid,
+                    employee_email:user.email,
                     employee_name:querySnapShot.data().name,
                     reason:reason,
                     status:"Pending",

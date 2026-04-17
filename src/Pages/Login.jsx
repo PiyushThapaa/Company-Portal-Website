@@ -18,7 +18,7 @@ function Login() {
       return;
     }
     try {
-      const userCredentials = await signInWithEmailAndPassword(auth, `${cred.email}@app.com`, cred.password) 
+      const userCredentials = await signInWithEmailAndPassword(auth,cred.email, cred.password) 
       setAuthChanged(prev=>!prev)
     } catch (error) {
       console.error("Error Ocurred, ", error.message)
@@ -37,8 +37,8 @@ function Login() {
         <main className='flex justify-center'>
           <form className='border-[1px] border-black rounded-lg p-5 w-96 max-w-full m-5 mt-10'>
             <h1 className='text-center text-[30px] font-bold'>Login</h1>
-            <label htmlFor="id" className='text-sm block mt-5 font-[600]'>ID Number</label>
-            <input type="text" name="id" id="id" onChange={(e)=>setCred({...cred,email:e.target.value})} className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm' />
+            <label htmlFor="id" className='text-sm block mt-5 font-[600]'>Email</label>
+            <input type="email" name="email" id="email" onChange={(e)=>setCred({...cred,email:e.target.value})} className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm' />
             <label htmlFor="password" className='text-sm block mt-5 font-[600]'>Password</label>
             <input type="password" name="password" id="password" onChange={(e)=>setCred({...cred,password:e.target.value})} className='mt-[10px] border-[1px] border-black rounded-lg w-full p-2 bg-[#F0F0F0] text-sm'/>
             <div className='text-center mt-5'>

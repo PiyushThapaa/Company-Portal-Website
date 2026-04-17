@@ -1,9 +1,11 @@
 import { collection, getDocs, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { db } from '../utils/firebase';
 
 function LeaveRequestList() {
+
+    const Navigate = useNavigate();
 
     const [allLeaves, setAllLeaves] = useState([])
 
@@ -57,10 +59,14 @@ function LeaveRequestList() {
                                         <td className="px-4 py-2 border-b">{item.date.split('-').reverse().join('-')} ({item.session})</td>
                                 }
                                 <td className="px-4 py-2 border-b bg-yellow-400">{item.status}</td>
-                                <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer" onClick={() => {
-                                    setIsOpen(true)
-                                    viewHandler(item.id)
-                                }}>View</td>
+                                <td className="px-4 py-2 border-b hover:no-underline underline text-[#2563eb] cursor-pointer" 
+                                // onClick={() => {
+                                    // setIsOpen(true)
+                                    // viewHandler(item.id)
+                                    // Navigate("/leave-request-details")
+                                    
+                                // }}
+                                ><Link to={`/leave-request-details?id=${item.id}`}>View</Link></td>
                             </tr>
                         </tbody>
                     )
